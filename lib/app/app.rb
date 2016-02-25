@@ -1,2 +1,2 @@
-project_root = File.dirname(File.absolute_path(__FILE__))
-Dir.glob(project_root + '/objects/*', &method(:require))
+require_relative "biology/neuron"
+require_relative "hierarchy/region"

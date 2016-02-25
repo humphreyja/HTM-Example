@@ -7,7 +7,10 @@ module SDROB
     LONGDESC
 
     def simulate
-      puts "Running Simulate"
+      puts "Running Simulate..."
+      n = Cell::Neuron.new([2,4,5])
+      r = Hierarchy::Region.new
+      puts r.layer4
     end
   end
 end
