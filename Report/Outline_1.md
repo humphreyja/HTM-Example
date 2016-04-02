@@ -1,0 +1,40 @@
+1. Defining Intelligence
+    - Why the most popular methods are not...
+      - Neural Nets
+      - Watson
+      - Deep Learning
+    - ...and why they could be
+2. A new model
+  - An intelligent mind requires
+    - Memory (auto-associative and sequential)
+    - Predictions
+    - Desire
+  - How I model…
+    - Memory
+      - Storage
+      - Retrieval
+    - Predictions
+      - Feedback theory
+    - Desire
+      - Emotion
+        - Negative feelings
+        - Positive Feelings
+  - Why Emotion is key to intelligence
+    - Why can’t Watson beat the Turing Test
+      - Input/Output Machines
+      - Thinking Machines
+    - A possibility that a computer could beat the Turing Test without being intelligent
+    - Why computers may never beat the Turing Test
+3. A Programmer’s View
+  - Linked Tree structure
+    - A branch is a column.  When one fires, the column fires
+    - The lowest level is linked to the highest level providing feedback
+    - Each column is also highly connected to all other columns (like 90% is connected to outward sources), so not just a simple tree, closer to a graph but still has hierarchy.  
+  - Concept Memory
+    - Doesn’t store information as a representation of what was inputed
+    - Stores the concept of that information
+    - Allows for multiple concepts to be combined
+  - Builds the representation of that concept by sending the information down the Tree structure.
+    - Depending on the desired output, it will build the object in different ways
+    - If it doesn’t exist for that output, then try closest attempt and create “neurons” that implement that path, effectively teaching itself that method.
+  - If it encounters something that it has never come across, create “neurons” to build the path.  Breaks down the object into the different parts of it creating the hierarchy tree.
