@@ -1,2 +1,8 @@
-require_relative "biology/neuron"
-require_relative "hierarchy/region"
+require_relative "config"
+
+class App
+  def initialize
+
+    root = Region.new
+  end
+end

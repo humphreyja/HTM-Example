@@ -6,11 +6,16 @@ module SDROB
       Runs a set of simulation data\r\n
     LONGDESC
 
-    def simulate
+    def simulate(count)
       puts "Running Simulate..."
-      n = Cell::Neuron.new([2,4,5])
-      r = Hierarchy::Region.new
-      puts r.layer4
+      root = Region.new
+      count = count.to_i
+      [*1..count].each do
+        root.test
+      end
+
+      puts "Strongest Synapse: #{Config.strongest_connection}"
+
     end
   end
 end
