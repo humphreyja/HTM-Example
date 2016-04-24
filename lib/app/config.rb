@@ -59,8 +59,52 @@ class Config
   def self.total_connections=(val)
     @@total_connections = val
   end
-end
 
+  @@predicted_cells = 0
+  def self.predicted_cells
+    @@predicted_cells
+  end
+
+  def self.predicted_cells=(val)
+    @@predicted_cells = val
+  end
+
+  @@total_predicted_cells = 0
+  def self.total_predicted_cells
+    @@total_predicted_cells
+  end
+
+  def self.total_predicted_cells=(val)
+    @@total_predicted_cells = val
+  end
+
+  def self.print_heading(content, color = :white, only_title = true)
+    h_size = ""
+    content.length.times { h_size += "=" }
+
+    all_color = :white
+    h_color = color
+    all_color = color unless only_title
+
+    puts
+    puts "=========#{h_size}=========".colorize(all_color)
+    puts "         #{content}".colorize(h_color)
+    puts "=========#{h_size}=========".colorize(all_color)
+    puts
+  end
+
+  @@start_time = Time.now
+  def self.start_timer
+    @@start_time = Time.now
+  end
+
+  def self.run_time(color=:white)
+
+    puts "Runtime: #{Time.now - @@start_time} Seconds".colorize(color)
+  end
+end
+require "colorize"
+require_relative "models/cell"
 require_relative "models/cells/layer23"
 require_relative "models/column"
 require_relative "models/region"

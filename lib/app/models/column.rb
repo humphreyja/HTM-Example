@@ -28,6 +28,7 @@ class Column
         end
         return @cells
       else
+        Config.predicted_cells += 1
         @cells[primed_cell].predicted(prev_input)
         return [@cells[primed_cell]]
       end

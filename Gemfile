@@ -1,3 +1,4 @@
+source 'https://rubygems.org'
 gem "bundler"
 gem "thor"
-gem "awesomeprint"
+gem "colorize"

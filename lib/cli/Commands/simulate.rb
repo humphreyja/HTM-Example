@@ -1,4 +1,5 @@
 require "thor"
+
 module HTM
   class Cli < Thor
     desc "simulate (int)", "Runs simulation data"
@@ -8,14 +9,15 @@ module HTM
     LONGDESC
 
     def simulate(count)
-      puts "Running Simulate..."
+      Config.print_heading("Running Simulate...")
       root = Region.new
       count = count.to_i
       [*1..count].each do
         root.test
       end
 
-      root.columns.each do |column|
+
+      root.columns.each do |idx, column|
         column.cells.each do |cell|
           cell.distral.each do |synapse, strength|
             Config.total_connections += 1 if strength >= Config::SYNAPSE_STRENGTH
@@ -23,10 +25,14 @@ module HTM
         end
       end
 
-      ap "Strongest Synapse: #{Config.strongest_connection}"
-      ap "Total Active Relationships: #{Config.total_connections}"
 
-
+      Config.print_heading("Simulation Data", :yellow)
+      puts "Strongest Synapse: #{Config.strongest_connection}".yellow
+      puts "Total Active Relationships: #{Config.total_connections}".yellow
+      puts "Total Predicted Patterns: #{Config.total_predicted_cells}".yellow
+      puts
+      Config.run_time
+      puts
     end
   end
 end

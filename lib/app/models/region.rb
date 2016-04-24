@@ -22,6 +22,7 @@ class Region
 
   # Returns an SDR based on the new input as well as the previous state
   def output(input)
+    Config.predicted_cells = 0
     col_active = []
     col_total = 0
     @columns.each do |_, column|
@@ -31,7 +32,12 @@ class Region
         col_active += col_out
       end
     end
-    puts "Output Count: #{col_total} - Cell count: #{col_active.count}"
+
+    Config.total_predicted_cells += 1 if Config.predicted_cells > 0
+
+    print "Output Count: #{col_total} - Cell count: #{col_active.count}"
+    print " #{Config.predicted_cells} predicted cells".green if Config.predicted_cells > 0
+    puts
     @prev_active = col_active
     col_active
   end
