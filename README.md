@@ -1,73 +1,42 @@
-# Organic Computing
-## Neurons
->Cells are patterns, to validate that the pattern is a match, simply check if the pattern is a subset of its single core set.
+# HTM Application
 
-* Have a single set(SDR) with 20% of data being 1s the other being 0s
-* Have a list of Synapses(SDR) with a strength between 0 and 1 with a threshold or .4
-* Have a smaller list of Synapses(SDR) with the same configuration as above but will exist from different regions  
+## Setup
 
-## Math
->Vector with n binary values where each bit represents a neuron
+#### Ruby environment setup
 
-x = SDR
+Install the ruby environment as well as the gem **Bundler**.
+
+#### Next Run:
 ```
-x = [b(0), ..., b(n-1)]
+bundle install
 ```
 
-s = % of ON bits
-
-w = # of ON bits
-
+#### Run the program with:
 ```
-w(x) = s X n = ||x||(1)
+HTM.rb simulate 100
 ```
 
-###### Example
+This will run the program with 100 cycles of random input.  Change the integer value to change the amount of cycles of input.
+
+## Options
+
+To change how the program functions, change the constant values inside the config.rb file located:
+
 ```
-x = 00000100000001000000
-y = 00000100000000000001
-
-n = 20, s = .1, w = 2
-```
-
-Typical ranges for n, s, and w
-
- n | s |  w
----|---|--
-2048 to 65536 | 0.05% to 2% | 40
-
-### Capacity
-
-Unique patterns
-```
-( n )       n!
-(   ) = ----------
-( w )    w!(n-w)!
-```
-###### Example
-```
-n = 2048
-w = 40
-
-total > 10^84
+lib/app/config.rb
 ```
 
-## Patterns
+You can change most of the thresholds and values of the HTM program, like amount of columns and cells, as well as the speed at which relationships are formed.  Each value is documented in the config file.
 
-Recognizing patterns is done by finding patterns in SDRs.  A SDR is considered to match another SDR by doing an AND between the two sets and seeing if the overlap is large enough to overcome a defined threshold.
+## Simulate Command
 
-###### Example (Ruby)
-```ruby
-x = Set.new [1,3,5,7,12]
-y = Set.new [2,3,5,7,12]
-threshold = 3
-z = x.intersection y  # >> z = (3,5,7,12)
+This runs input on a single layer (layer 2/3) and only on a single region.  This only provides an example of how relationships are formed and how a region would handle input.  To add the functionality of a hierarchy, you would need to change the **fire** function in **column.rb** so that when an entire column fires, the pattern gets passed to the next region.  To add more cells, add a file to the **cells** folder and declare its implementation there.  It should run in **fire** function of **column.rb** which provides both the new input and the previous input.  
 
-if z.length >= threshold
-  return true
-else
-  return false
-end
-```
-n = 2048, w = 40
-With up to 14 bits of noise (33%), you can classify a quadrillion patterns with an error rate of less than 10^-24
+## Contributing
+This project is welcome to pull requests and is open to collaborators.
+
+1. Fork it
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request

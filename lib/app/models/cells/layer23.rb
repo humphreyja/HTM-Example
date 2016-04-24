@@ -1,3 +1,5 @@
+# This is a layer 2/3 cell.  It has a normal state and a primed state.  It also holds the previous input of that column
+# so that it can determine what relationships to build and which ones to decay.
 module Cells
   class Layer23 < ::Cell
     attr_accessor :proximal, :distral, :cycles_since_last_fire, :state, :previous_input
@@ -13,6 +15,7 @@ module Cells
     def primed?(prev_input)
       return false if prev_input.count < 1
 
+      # If a cell is still in a primed state here, it predicted incorrectly
       decrement_predicted_relationships if @state == :primed
 
       @previous_input = []
@@ -41,6 +44,7 @@ module Cells
         end
       end
 
+      # Decays the relationships
       Thread.new {
         @distral.each do |syn, strength|
           strength -= Config::SYNAPSE_EXPIRE
@@ -52,6 +56,7 @@ module Cells
 
   private
 
+    # Called only when a cell predicts incorrectly
     def decrement_predicted_relationships
       @previous_input.each do |cell|
         if @distral.key?(cell.proximal)
